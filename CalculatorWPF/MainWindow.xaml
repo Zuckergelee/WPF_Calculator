@@ -1,0 +1,105 @@
+﻿<Window x:Class="CalculatorWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalculatorWPF"
+        mc:Ignorable="d"
+        Title="CalculatorWPF" Height="450" Width="600" Background="#FF38384E">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="34"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Name="backgroundElement"
+                                    CornerRadius="15"
+                                    Background="{TemplateBinding Background}"/>
+                            
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                              TextElement.Foreground="{TemplateBinding Foreground}"
+                                              TextElement.FontSize="{TemplateBinding FontSize}"
+                                              TextElement.FontFamily="{TemplateBinding FontFamily}">
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <EventSetter Event="Click" Handler="Button_Click"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button" x:Key="figureButton">
+            <Setter Property="Background" Value="#FF362780"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button" x:Key="resultButton">
+            <Setter Property="Background" Value="#FFB716BF"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button" x:Key="operationButton">
+            <Setter Property="Background" Value="#FF711216"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="Buttons" Margin="5" Background="#FF1E1E25">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="text" FontSize="50"
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   Margin="5"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="5"
+                   Text="{Binding Path=(local:Operations.IOField)}"/>
+
+        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource resultButton}" Content="C"/>
+        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource operationButton}" Content="&#x27f5;"/>
+        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource operationButton}" Content="&#x00b1;"/>
+        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource operationButton}" Content="&#x221A;"/>
+        <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource operationButton}" Content="x&#x00b2;"/>
+        <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource figureButton}" Content="7"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource figureButton}" Content="8"/>
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource figureButton}" Content="9"/>
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource operationButton}" Content="+"/>
+        <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource operationButton}" Content="n!"/>
+        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource figureButton}" Content="4"/>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource figureButton}" Content="5"/>
+        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource figureButton}" Content="6"/>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource operationButton}" Content="-"/>
+        <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource operationButton}" Content="sin"/>
+        <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource figureButton}" Content="1"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource figureButton}" Content="2"/>
+        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource figureButton}" Content="3"/>
+        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource operationButton}" Content="*"/>
+        <Button Grid.Row="4" Grid.Column="4" Style="{StaticResource operationButton}" Content="cos"/>
+        <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource resultButton}" Content="="/>
+        <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource figureButton}" Content="0"/>
+        <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource operationButton}" Content="."/>
+        <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource operationButton}" Content="/"/>
+        <Button Grid.Row="5" Grid.Column="4" Style="{StaticResource operationButton}" Content="tan"/>
+    </Grid>
+</Window>
